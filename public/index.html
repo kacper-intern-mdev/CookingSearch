@@ -39,5 +39,28 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDprHlKYGAf_KzF1WxrYtWdv9EbshpcMlA",
+    authDomain: "cookingsearch.firebaseapp.com",
+    databaseURL: "https://cookingsearch.firebaseio.com",
+    projectId: "cookingsearch",
+    storageBucket: "cookingsearch.appspot.com",
+    messagingSenderId: "363239813650",
+    appId: "1:363239813650:web:55d68f99d09b3e7ed4decb",
+    measurementId: "G-LVCX2H0YFJ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
   </body>
 </html>

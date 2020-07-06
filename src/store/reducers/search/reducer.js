@@ -3,7 +3,6 @@ import * as types from './types';
 const init = {
     data: {
         text: "",
-        details: {},
         items: [],
     },
     next: "",

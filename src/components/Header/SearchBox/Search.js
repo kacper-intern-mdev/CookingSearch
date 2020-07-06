@@ -10,12 +10,13 @@ export default function Search() {
     const delayRef = useRef();
 
     const options = useSelector(state => state.advancedSearch);
+    const searchText = useSelector(state => state.search.data.text);
 
     useEffect(() => {
-        if(searchVal.length > 0){
+        if(searchVal.length > 0 && searchVal !== searchText){
             const delayId = setTimeout(() => {
                 dispatch(searchClear());
-                dispatch(getSearchedFood(searchVal, options));
+                dispatch(getSearchedFood(searchVal));
             }, 300);
 
             delayRef.current = delayId;

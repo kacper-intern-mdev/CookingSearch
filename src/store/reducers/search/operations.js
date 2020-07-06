@@ -2,13 +2,13 @@ import * as actions from './actions';
 
 import { fetchFoodData, genericFetch } from '../../../utils/api';
 /* HERE DO ADVANCED OPTIONS */
-export function getSearchedFood(query, options) {
+export function getSearchedFood(query) {
     return async function(dispatch, getState){
         const state = getState();
-        if(state.search.data.text === query) return Promise.resolve();
+        if(state.search.data.text === query && !state.searchOptions.active ) return Promise.resolve();
         dispatch(actions.searchFetchPending());
         try {
-            const res = await fetchFoodData(query, {nutritionType: "logging", });
+            const res = await fetchFoodData(query, state.searchOptions.active ? state.searchOptions.values : {});
            
             const mappedRes = mapSearchedFoodToState(res);
 

@@ -14,8 +14,24 @@ export async function genericFetch(url){
 }
 
 export async function fetchFoodData(query, options){
-    const optionsStr = JSON.stringify(options);
-    console.log(optionsStr);
-    const fetchURL = `${searchURL}ingr=${encodeURIComponent(query)}&app_id=${appId}&app_key=${appKey}`;
+    if(query.length === 0) return;
+    function encodeOptions(options){
+        let encodedStr = "";
+
+        for(let [key,val] of Object.entries(options)){
+            if(val === "") continue;
+            if(key === "nutrition"){
+                key = "nutrition-type";
+                val = val ? "logging" : "";
+            }
+            key = key === "type" ? "categoryLabel" : key;
+            encodedStr += `${key}=${val}&`;
+        }
+
+        return encodedStr;
+    }
+
+    const fetchURL = `${searchURL}ingr=${encodeURIComponent(query)}&app_id=${appId}&app_key=${appKey}&${encodeOptions(options)}`;
+    console.log(fetchURL);
     return await genericFetch(fetchURL);
 }
